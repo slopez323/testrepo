@@ -1,52 +1,44 @@
-// This function is called when the use hits the take screenshot button on the app. This is where we are creating the image that will be shared via Web Share API
+const screenshotContainer = document.querySelector('#screenshotContainer');
+// const sharebtn = document.querySelector('#share-button');
 
-function createFinalImage() {
-    const screenshotContainer =  document.getElementById("screenshot-container") 
+// sharebtn.addEventListener('click', share);
 
-    // here we are turning all elements in our screenshot container into one image
-    html2canvas(screenshotContainer).then(canvas => {
+import html2canvas from 'html2canvas'
 
-        try {
-            var finalScreenshot = canvas.toDataURL('image/jpeg', 1);
 
-            // share image
-            shareScreenshot(finalScreenshot)
+export default {
+  methods: {
+    share() {
+      // iife here
+      ;(async () => {
+        if (!('share' in navigator)) {
+          return
         }
-        catch (e) {
-            console.log("Screenshot failed: " + e);
-        }
-
-    });
+        // `element` is the HTML element you want to share.
+        // `backgroundColor` is the desired background color.
+        const canvas = await html2canvas(screenshotContainer)
+        canvas.toBlob(async (blob) => {
+          // Even if you want to share just one file you need to
+          // send them as an array of files.
+          const files = [new File([blob], 'image.png', { type: blob.type })]
+          const shareData = {
+            text: 'Some text',
+            title: 'Some title',
+            files,
+          }
+          if (navigator.canShare(shareData)) {
+            try {
+              await navigator.share(shareData)
+            } catch (err) {
+              if (err.name !== 'AbortError') {
+                console.error(err.name, err.message)
+              }
+            }
+          } else {
+            console.warn('Sharing not supported', shareData)
+          }
+        })
+      })()
+    },
+  },
 }
-
-// Here we are sending the image to the web share API
-
-async function shareScreenshot(finalScreenshot) {
-    const blob = await (await fetch(finalScreenshot)).blob();
-
-    const filesArray = [
-      new File(
-        [blob],
-        `test${Date.now()}.jpg`,
-        {
-          type: blob.type,
-          lastModified: new Date().getTime()
-        }
-      )
-    ];
-
-    const shareData = {
-      files: filesArray,
-    };
-
-    if (navigator.canShare && navigator.canShare({ files: filesArray })) {
-        navigator.share(shareData);
-    } else {
-        console.log(`Your system doesn't support sharing files.`);
-    }
-}
-
-// share screenshot 
-document.getElementById("share-button").addEventListener("click", function() {
-    createFinalImage()
-});
