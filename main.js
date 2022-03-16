@@ -49,9 +49,8 @@ const share = async() => {
   }
   // `element` is the HTML element you want to share.
   // `backgroundColor` is the desired background color.
-  const canvas = await html2canvas(screenshotContainer, {
-    backgroundColor: 'yellow' 
-  });
+  const canvas = await html2canvas(screenshotContainer);
+
   canvas.toBlob(async (blob) => {
     // Even if you want to share just one file you need to 
     // send them as an array of files.
@@ -75,4 +74,5 @@ const share = async() => {
   });
 };
 
-sharebtn.addEventListener('click', share);
+$(window).on('click',sharebtn,share);
+// sharebtn.addEventListener('click', share);
