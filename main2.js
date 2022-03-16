@@ -475,7 +475,6 @@ const share = async() => {
       const shareData = {
         title: 'Word! | Daily Brain Play',
         files,
-        url: 'https://word.dailybrainplay.com'
       };
       if (navigator.canShare(shareData)) {
         try {
