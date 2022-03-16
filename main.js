@@ -74,5 +74,5 @@ const share = async() => {
   });
 };
 
-$(window).on('click',sharebtn,share);
+$(document).on('click', sharebtn, share);
 // sharebtn.addEventListener('click', share);
