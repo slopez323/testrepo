@@ -460,21 +460,6 @@ if (navigator.share) {
     };
 } else $('.sharediv').remove();
 
-$('.shareresult').on('click', '#share-result', share)
-// function () {
-//     // sendEvent(analytics.SHARE_GAME_CLICK, {stars: localStorage.getItem(played.GAME_STARS), word:correctWord});
-//     // navigator.share({
-//     //     title: 'Play Word!',
-//     //     url: 'https://word.dailybrainplay.com/',
-//     //     text: `${shareMessage}`
-//     // }).then(() => {
-//     //     console.log('Thanks for sharing!');
-//     // })
-//     //     .catch(console.error);
-
-    
-// });
-
 const share = async() => {
     if (!('share' in navigator)) {
       return;
@@ -505,6 +490,23 @@ const share = async() => {
       }
     });
   };
+
+$('.shareresult').on('click', '#share-result', share)
+// function () {
+//     // sendEvent(analytics.SHARE_GAME_CLICK, {stars: localStorage.getItem(played.GAME_STARS), word:correctWord});
+//     // navigator.share({
+//     //     title: 'Play Word!',
+//     //     url: 'https://word.dailybrainplay.com/',
+//     //     text: `${shareMessage}`
+//     // }).then(() => {
+//     //     console.log('Thanks for sharing!');
+//     // })
+//     //     .catch(console.error);
+
+    
+// });
+
+
 
 $('.sharestat').on('click', '#share-stat', function () {
     // sendEvent(analytics.SHARE_STAT_CLICK, {total_stars: localStorage.getItem(played.TOTAL_STARS), total_games: localStorage.getItem(played.TOTAL_GAMES)});
