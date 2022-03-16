@@ -3,7 +3,7 @@ const sharebtn = document.querySelector('#share-button');
 
 sharebtn.addEventListener('click', share);
 
-import html2canvas from 'html2canvas'
+// import html2canvas from 'html2canvas'
 
 
 // export default {
