@@ -2,29 +2,192 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="styles.css">
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y2YYMF6JQG"></script>
 
-    <script src="https://kit.fontawesome.com/b1efd90343.js" crossorigin="anonymous"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
+        gtag('config', 'G-Y2YYMF6JQG');
+        gtag('config', 'UA-222566940-2');
+    </script> -->
+
+    <title>Word! | Daily Brain Play</title>
+    <meta name="description" content="Guess the word! of the day using clue words and letters and collect those stars!">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Cabin&family=Archivo+Black&family=Syncopate&family=Pacifico&family=Special+Elite&family=Rock+Salt&family=Sumana&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&family=Pacifico&family=PT+Sans+Narrow&family=Inconsolata:wght@400;600&family=Rock+Salt&family=Special+Elite&family=Syncopate&display=swap"
         rel="stylesheet">
 
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <script src="https://kit.fontawesome.com/b1efd90343.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" href="styles.css?ts=1647442633546">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        
+
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="https://word.dailybrainplay.com/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Word! | Daily Brain Play">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="https://word.dailybrainplay.com/OG-Test.png">
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="word.dailybrainplay.com">
+    <meta property="twitter:url" content="https://word.dailybrainplay.com/">
+    <meta name="twitter:title" content="Word! | Daily Brain Play">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="https://word.dailybrainplay.com/OG-Test.png">
+
+    <!-- Meta Tags Generated via https://www.opengraph.xyz -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body>
-    <div id="screenshotContainer">
+
+    <div class="main">
+        <div class="card">
+            <div class="title">Word!</div>
+            <div class="card-main">
+                <div id="word">
+                    <span id="inputSpan">
+
+                    </span>
+                </div>
+                <div class="clues" id="clue1"></div>
+                <div class="clues" id="clue2"></div>
+                <div class="clues" id="clue3"></div>
+                <div class="clues" id="clue4"></div>
+                <div class="clues" id="clue5"></div>
+                <div class="starsRemain"> <span> Stars remaining: </span>
+                    <div class="counter"></div>
+                    <div class="counter"></div>
+                    <div class="counter"></div>
+                    <div class="counter"></div>
+                    <div class="counter"></div>
+                </div>
+            </div>
+            <div class="button">
+                <button id="submit">Submit guess!</button>
+                <button id="next">Reveal next clue for <i class="fa fa-solid fa-star-half"></i></button>
+                <button id="letter">Reveal 1 letter for <i class="fa fa-solid fa-star"></i></button>
+
+            </div>
+            <span><i class="fa fa-solid fa-bars" id="menu"></i></span>
+            <span><i class="fa fa-solid fa-circle-info" id="help"></i></span>
+            <span><i class="fa fa-solid fa-chart-bar" id="statBtn"></i></span>
+
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li class="parent">
+                        <a href="https://dailybrainplay.com/"
+                            target="_blank"><span>Daily.</span><span>Brain.</span><span>Play.</span></a>
+                    </li>
+                    <li class="gphrazy">
+                        <a href="https://getphrazy.dailybrainplay.com/"
+                            target="_blank"><span>get</span><strong>Phrazy</strong></a>
+                    </li>
+                    <li class="word">
+                        <a href="https://word.dailybrainplay.com/" target="_blank"><span>Word!</span></a>
+                    </li>
+                    <div class="details">
+                        <a href="mailto:info@dailybrainplay.com" class="contact" target="_blank"><i
+                                class="fa fa-regular fa-envelope" aria-hidden="true"></i></a>
+                                |
+                        <a href="https://www.instagram.com/dailybrainplay/" class="contact" target="_blank"><i
+                                class="fa fa-brands fa-instagram" aria-hidden="true"></i></a>
+                    </div>
+                </ul>
+            </nav>
+        </div>
+
+    </div>
+
+    <div class="popup popup-instructions">
+        <div class="instructions">
+            <h1>New day, New <span>Word!</span></h1>
+            <ul>
+                <li> Guess a word based on related clue words.</li>
+                <li> <span>Reveal more clue words</span> for a <span>half <i class="fa fa-solid fa-star"></i>
+                    </span>each.</li>
+                <li> <span>Reveal more letters</span> of the guess word (up to half the word length) for a <span>full <i
+                            class="fa fa-solid fa-star"></i> </span> each.</li>
+            </ul>
+            <button class="exitBtn">X</button>
+        </div>
+    </div>
+
+    <div class="popup popup-error">
+        <div class="standard-popup">
+            <h1>Whoops!</h1>
+            <p></p>
+            <button class="exitBtn">X</button>
+        </div>
+    </div>
+
+    <div class="popup popup-confirm">
+        <div class="standard-popup">
+            <h1>Sure?</h1>
+            <p>You only get 1 chance to guess the word per day so guess wisely!</p>
+            <div class="confirmOptions">
+                <button class="yesno" id="yes">So sure!</button>
+                <button class="yesno" id="no">Lemme think about it again!</button>
+            </div>
+            <button class="exitBtn">X</button>
+        </div>
+    </div>
+
+    <div class="popup popup-result">
+        <div class="standard-popup" id="screenshotContainer">
+            <h1></h1>
+            <p id="lostText">The word you were looking for was</p>
+            <h2 id="showWord"></h2>
+            <div class="stars"></div>
+            <div class="stats">
+                <div>
+                    <div class="statbox game-box"><span></span></div>
+                    <p>Lifetime Games</p>
+                </div>
+                <div>
+                    <div class="statbox stars-box"><span></span></div>
+                    <p>Lifetime Stars</p>
+                </div>
+                <div>
+                    <div class="statbox ave-box"><span></span><i class="fa fa-solid fa-star" style="font-size:20px"></i>
+                    </div>
+                    <p>Average Score</p>
+                </div>
+            </div>
+            <div class="clockshare">
+                <div id="clockdiv">
+                    <h5>Play again in:</h5>
+                    <span class="time" id="hours"></span>
+                    <span> : </span>
+                    <span class="time" id="minutes"></span>
+                    <span> : </span>
+                    <span class="time" id="seconds"></span>
+                </div>
+                <div class="sharediv shareresult"></div>
+            </div>
+            <button class="exitBtn">X</button>
+        </div>
+    </div>
+
+    <div class="popup popup-stats">
         <div class="standard-popup">
             <h1>Stats</h1>
             <div class="stats">
@@ -43,11 +206,12 @@
                 </div>
             </div>
             <div class="sharediv sharestat"></div>
-            <button id="share-button">Share</button>
+            <button class="exitBtn">X</button>
 
         </div>
     </div>
-<script src="main.js"></script>
+
+    <script src="main2.js"></script>
 </body>
 
 </html>
