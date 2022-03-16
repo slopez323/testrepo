@@ -473,9 +473,9 @@ const share = async() => {
       // send them as an array of files.
       const files = [new File([blob], 'image.png', { type: blob.type })];
       const shareData = {
-        text: `${shareMessage}`,
         title: 'Word! | Daily Brain Play',
         files,
+        url: 'https://word.dailybrainplay.com'
       };
       if (navigator.canShare(shareData)) {
         try {
@@ -508,17 +508,28 @@ $('.shareresult').on('click', '#share-result', share)
 
 
 
-$('.sharestat').on('click', '#share-stat', function () {
-    // sendEvent(analytics.SHARE_STAT_CLICK, {total_stars: localStorage.getItem(played.TOTAL_STARS), total_games: localStorage.getItem(played.TOTAL_GAMES)});
-    navigator.share({
-        title: 'Play Word!',
-        url: 'https://word.dailybrainplay.com/',
-        text: `I have a total of ${localStorage.getItem(played.TOTAL_STARS)}⭐️ after playing ${localStorage.getItem(played.TOTAL_GAMES)} game/s on Word!  What about you? `
-    }).then(() => {
-        console.log('Thanks for sharing!');
-    })
-        .catch(console.error);
+$('.sharestat').on('click', '#share-stat', function(){
+    if(localStorage.getItem(played.GAME_RESULT) == 'won'){
+        $('#shareText').text(`Woot!🙌🏼 Guessed the Word! today and got`);
+    } else if (localStorage.getItem(played.GAME_RESULT) == 'lost'){
+        $('#shareText').text(`Didn't get any stars today 😠`);
+        $('.stars').hide();
+    }
+    showStats();
+    $('.popup-share').show();
+    share();
 });
+// function () {
+    // sendEvent(analytics.SHARE_STAT_CLICK, {total_stars: localStorage.getItem(played.TOTAL_STARS), total_games: localStorage.getItem(played.TOTAL_GAMES)});
+//     navigator.share({
+//         title: 'Play Word!',
+//         url: 'https://word.dailybrainplay.com/',
+//         text: `I have a total of ${localStorage.getItem(played.TOTAL_STARS)}⭐️ after playing ${localStorage.getItem(played.TOTAL_GAMES)} game/s on Word!  What about you? `
+//     }).then(() => {
+//         console.log('Thanks for sharing!');
+//     })
+//         .catch(console.error);
+// });
 
 // function sendEvent(action, values) {
 //     if (window.gtag) {
