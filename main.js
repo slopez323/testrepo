@@ -50,7 +50,7 @@ const share = async() => {
   // `element` is the HTML element you want to share.
   // `backgroundColor` is the desired background color.
   const canvas = await html2canvas(screenshotContainer, {
-    yellow,
+    backgroundColor: 'yellow' 
   });
   canvas.toBlob(async (blob) => {
     // Even if you want to share just one file you need to 
