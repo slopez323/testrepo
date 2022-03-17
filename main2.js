@@ -389,10 +389,10 @@ function displayWin(stars) {
     $('#lostText').remove();
     $('#showWord').remove();
     for (let i = 1; i <= stars; i++) {
-        $('.stars').append('<i class="fa fa-solid fa-star" style ="font-size:50px"></i>');
+        $('.stars').append('<i class="fa fa-solid fa-star"></i>');
     };
     for (let i = 0; i < Math.ceil(stars % 1); i++) {
-        $('.stars').append('<i class="fa fa-solid fa-star-half" style ="font-size:50px"></i>');
+        $('.stars').append('<i class="fa fa-solid fa-star-half"></i>');
     };
     $('.popup-result').show();
 
@@ -455,9 +455,6 @@ setInterval(function() {
 
 if (navigator.share) {
     $('.shareresult').append(`<button class="share" id="share-result">Share <i class="fa fa-solid fa-share-from-square"></i></button>`);
-    if (localStorage.getItem(played.TOTAL_GAMES) > 0) {
-        $('.sharestat').append(`<button class="share" id="share-stat">Share <i class="fa fa-solid fa-share-from-square"></i></button>`);
-    };
 } else $('.sharediv').remove();
 
 const share = async() => {
@@ -490,7 +487,7 @@ const share = async() => {
     });
   };
 
-$('.shareresult').on('click', '#share-result', share)
+// $('.shareresult').on('click', '#share-result', share)
 // function () {
 //     // sendEvent(analytics.SHARE_GAME_CLICK, {stars: localStorage.getItem(played.GAME_STARS), word:correctWord});
 //     // navigator.share({
@@ -507,11 +504,11 @@ $('.shareresult').on('click', '#share-result', share)
 
 
 
-$('.sharestat').on('click', '#share-stat', function(){
+$('.shareresult').on('click', '#share-result', function(){
     if(localStorage.getItem(played.GAME_RESULT) == 'won'){
-        $('#shareText').text(`Woot!🙌🏼 Guessed the Word! today and got`);
+        $('#shareText').text(`Woot! 🙌🏼 Guessed the Word! today and got`);
     } else if (localStorage.getItem(played.GAME_RESULT) == 'lost'){
-        $('#shareText').text(`Didn't get any stars today 😠`);
+        $('#shareText').text(`Couldn't guess the Word! today 😖`);
         $('.stars').hide();
     }
     showStats();

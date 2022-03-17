@@ -290,6 +290,11 @@ li{
     margin-bottom: 10px;
 }
 
+/*moved this to css*/
+.stars i{
+    font-size: 50px;
+}
+
 .stats{
     display: flex;
     gap: 15px;
@@ -328,6 +333,11 @@ li{
     display: flex;
     justify-content: center;
     align-items: center; 
+}
+
+/*transfer to css*/
+.statbox i{
+    font-size: 20px;
 }
 
 .clockshare{
@@ -445,6 +455,39 @@ h5{
     text-decoration: none;
     padding: 0 20px;
 }
+
+/*add this*/
+/* #screenshotContainer{
+    min-width: 250px;
+    max-width: 250px;
+    padding: 0 10px;
+}
+
+#shareText{
+    margin: 2px;
+    font-size: 15px;
+}
+
+#screenshotContainer i{
+    font-size: 30px;
+}
+
+#screenshotContainer>.stats{
+    padding: 0 5px;
+    gap: 5px;
+    margin-top: 0;
+}
+
+#screenshotContainer .statbox{
+    font-size: 18px;
+    min-width: 40px;
+    min-height: 40px;
+}
+
+#screenshotContainer .statbox i {
+    font-size: 12px;
+} */
+
 
 @media (max-width: 767px) and (orientation:portrait) {
     .card{
