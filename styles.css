@@ -164,6 +164,9 @@ h1{
 }
 
 @media (max-width: 782px) and (orientation:portrait){
+    body{
+        height: 90vh;
+    }
     .main{
         width: 420px;
     }
